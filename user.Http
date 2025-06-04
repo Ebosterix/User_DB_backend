@@ -5,14 +5,61 @@ GET http://localhost:3000/api/users
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
-{
-   "userName": "Hypierion",
-   "password": "1234n"
-}
+[
+  {
+    "username": "Chinedu",
+    "password": "12s3m",
+    "mainAddress": {
+      "street": "karl-arnold",
+      "zip": 52048,
+      "city": "hamburg",
+      "country": "germany"
+    }
+  },
+  {
+    "username": "Okile",
+    "password": "12s3D",
+    "mainAddress": {
+      "street": "Mörikestr. 14",
+      "zip": 12048,
+      "city": "Augsburg",
+      "country": "Germany"
+    }
+  },
+  {
+    "username": "Agatha",
+    "password": "12s3C",
+    "mainAddress": {
+      "street": "Graham. 16",
+      "zip": 32048,
+      "city": "Munich",
+      "country": "Germany"
+    }
+  },
+  {
+    "username": "Hassan",
+    "password": "13s3C",
+    "mainAddress": {
+      "street": "DenverStr. 96",
+      "zip": 36048,
+      "city": "Berlin",
+      "country": "Germany"
+    }
+  }
+]
+
+
+
 
 ###
 
 //GET http://localhost:3000/api/users/123 - throws error due to fake id
 
-
 GET http://localhost:3000/api/users/683eb39f58473396c26db6fc
+
+
+###
+DELETE  http://localhost:3000/api/users/68400b9ea9e49c9794b28d62 
+
+###
+DELETE  http://localhost:3000/api/users/  
