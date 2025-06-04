@@ -31,3 +31,4 @@ DELETE  http://localhost:3000/api/users/68400b9ea9e49c9794b28d62
 
 ###
 DELETE  http://localhost:3000/api/users/  
+find . -type f \( -iname "*.mp4" -o -iname "*.mov" -o -iname "*.avi" -o -iname "*.mkv" -o -iname "*.webm" \)
