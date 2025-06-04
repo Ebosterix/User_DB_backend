@@ -1,11 +1,15 @@
 import express from "express";
 import userRouter from "./userRouter.js";
-import connectDB from "./mongoDB_Connect.js";
+import  mongoDB_connect  from "./mongoDB_Connect.js";
+import { requestLogger } from "./middleware/requestLogger.js"
 import "dotenv/config.js"; // Load environment variables from .env file
+
 
 const app = express();
 
-connectDB(); // establishes connection to MongoDB
+mongoDB_connect(); // establishes connection to MongoDB
+
+app.use(requestLogger); // Middleware to log requests
 
 app.use(express.json()); // Middleware to parse JSON bodies
 

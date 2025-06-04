@@ -1,24 +1,25 @@
-import express from "express";
-import UserModel from "./models/UserModel.js";
-const userRouter = express.Router();
+import express from "express"
+import UserModel from "./models/UserModel.js"
+const userRouter = express.Router()
 /// GET  http://localhost:7777/api/users
 
 /// GET method : retrieving resources (data)
-userRouter.get("/", async (req, res, next) => {
-  const allUser = await UserModel.find();
-  res.status(200).send(allUser);
-});
+userRouter.get("/", async (req,res,next)=>{
+
+     const allUser = await UserModel.find()
+     res.status(200).send(allUser)
+
+})
+
 
 /// POST method : creating new resource (new data)
 ///  POST     http://localhost:7777/api/users
-userRouter.post("/", async (req, res, next) => {
-  try {
-    const newUser = await UserModel.create(req.body);
-    res.status(201).json(newUser);
-  } catch (error) {
-    next(error);
-  }
-});
+userRouter.post("/", (req, res, next) => {
+    ///console.log(req.body)
+    res.status(201).send(req.body);
+    /// res.status(201).send({message:"user is created!"})
+})
+
 
 userRouter.get("/:id",async(req,res,next)=>{
         try {
@@ -39,8 +40,8 @@ userRouter.get("/:id",async(req,res,next)=>{
 
 
 
-/// deleteing specific user  using ":id" parameter in the URL
-///DELETE http://localhost:7777/api/users/684004e966479e6af74d8d47
+/// deleteing specific user using id in the URL  
+///DELETE http://localhost:7777/api/users/ry74834hf7yg83478ty4g78g
 userRouter.delete("/:id",async(req,res,next)=>{
 
 
@@ -62,17 +63,15 @@ userRouter.delete("/:id",async(req,res,next)=>{
 
 })
 
-///DELETE ALL:  http://localhost:7777/api/users/
- userRouter.delete("/", async (req, res, next) => {
-  try {
-    const result = await UserModel.deleteMany({});
-    res.status(200).json({ message: "All users deleted", deletedCount: result.deletedCount });
-  } catch (error) {
-    next(error);
-  }
-});
+///DELETE ALL  http://localhost:7777/api/users/
+
+userRouter.delete("/",async(req,res,next)=>{
+
+        await UserModel.deleteMany()
+        res.status(200).send({message:"All users are deleted"})
+})
 
 
 
+export default userRouter
 
-export default userRouter;
