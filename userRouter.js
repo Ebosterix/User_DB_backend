@@ -14,11 +14,27 @@ userRouter.get("/", async (req,res,next)=>{
 
 /// POST method : creating new resource (new data)
 ///  POST     http://localhost:7777/api/users
-userRouter.post("/", (req, res, next) => {
-    ///console.log(req.body)
-    res.status(201).send(req.body);
-    /// res.status(201).send({message:"user is created!"})
+//* single user creation
+userRouter.post("/", async (req, res, next) => {
+    try {
+        const newUser = new UserModel(req.body);
+        await newUser.save();
+        res.status(201).send(newUser);
+    } catch (error) {
+        next({ status: 400, message: error.message });
+    }
 })
+
+
+//* SENDING AN ARRAY OF USERS
+
+// userRouter.post("/", (req, res, next) => {
+//     if (Array.isArray(req.body)) {
+//         res.status(201).send(req.body);
+//     } else {
+//         res.status(201).send(req.body);
+//     }
+// });
 
 
 userRouter.get("/:id",async(req,res,next)=>{
